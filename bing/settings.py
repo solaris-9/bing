@@ -8,12 +8,19 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import logging
+import time
 
 BOT_NAME = 'bing'
 
 SPIDER_MODULES = ['bing.spiders']
 NEWSPIDER_MODULE = 'bing.spiders'
 
+LOG_FILE = 'log/'+ BOT_NAME +'.crawl.%s.log' % time.strftime('%Y%m%d-%H%M%S', time.localtime())
+LOG_ENABLED = True
+LOG_ENCODING = 'utf-8'
+LOG_LEVEL = logging.DEBUG
+LOG_STDOUT = True
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'bing (+http://www.yourdomain.com)'
@@ -64,9 +71,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'bing.pipelines.BingPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'bing.pipelines.JsonWriterPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

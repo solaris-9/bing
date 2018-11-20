@@ -11,4 +11,11 @@ import scrapy
 class BingItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    word = scrapy.Field()
+    prUS = scrapy.Field()
+    prUK = scrapy.Field()
+    pClass = scrapy.Field()
+    defBing = scrapy.Field()
+    defWeb = scrapy.Field()
+	
     pass
